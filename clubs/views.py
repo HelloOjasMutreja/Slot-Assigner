@@ -11,5 +11,6 @@ from django.shortcuts import render
 
 # def viewClub(request, club_id):
 
-# def listClubs(request):
+def listClubs(request):
+    return render(request, 'clubs/list.html')
 
