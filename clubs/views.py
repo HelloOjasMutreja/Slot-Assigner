@@ -19,7 +19,16 @@ def createClub(request):
 # def updateClub(request, club_id):
     # edit admins
 
-# def deleteClub(request, club_id):
+def deleteClub(request, pk):
+    club = Club.objects.get(id=pk)
+    if not club:
+        return redirect('list_clubs')
+    if request.method == 'POST':
+        club.delete()
+        return redirect('list_clubs')
+    
+    context = {'club': club}
+    return render(request, 'clubs/delete.html', {'obj' : club})
 
 def viewClub(request, pk):
     club = Club.objects.get(id=pk)

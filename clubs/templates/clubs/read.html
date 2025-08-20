@@ -10,4 +10,6 @@
 
 <p>Established on: {{ club.established_date }}</p>
 
+<a href="{% url 'delete_club' club.id %}">Delete Club?</a>
+
 {% endblock content %}
