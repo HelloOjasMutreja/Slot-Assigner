@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import ClubForm
+from .models import Club
 
 # Create your views here.
 
@@ -23,5 +24,7 @@ def createClub(request):
 # def viewClub(request, club_id):
 
 def listClubs(request):
-    return render(request, 'clubs/list.html')
+    clubs = Club.objects.all()
+    context = {'clubs': clubs}
+    return render(request, 'clubs/list.html', context)
 

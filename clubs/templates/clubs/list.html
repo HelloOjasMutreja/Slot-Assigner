@@ -4,4 +4,14 @@
     
 <h1>This is the List View for all the Clubs</h1>
 
+{% for club in clubs %}
+    <div>
+        <h2>{{ club.name }}</h2>
+        <p>{{ club.description }}</p>
+        <p>Created on: {{ club.established_date }}</p>
+    </div>
+{% empty %}
+    <p>No clubs available.</p>
+{% endfor %}
+
 {% endblock content %}
