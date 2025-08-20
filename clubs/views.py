@@ -16,7 +16,19 @@ def createClub(request):
     context = {'form' : form}
     return render(request, 'clubs/form.html', context)
 
-# def updateClub(request, club_id):
+def updateClub(request, pk):
+    club = Club.objects.get(id=pk)
+    if not club:
+        return redirect('list_clubs')
+    form = ClubForm(instance=club)
+    if request.method == 'POST':
+        form = ClubForm(request.POST, instance=club)
+        if form.is_valid():
+            form.save()
+            return redirect('view_club', pk=club.id)
+    context = {'form': form, 'club': club}
+    return render(request, 'clubs/form.html', context)
+
     # edit admins
 
 def deleteClub(request, pk):
