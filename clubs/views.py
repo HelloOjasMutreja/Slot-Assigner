@@ -1,8 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .forms import ClubForm
 
 # Create your views here.
 
-# def createClub(request):
+def createClub(request):
+    form = ClubForm()
+
+    if request.method == 'POST':
+        form = ClubForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('list_clubs')
+
+    context = {'form' : form}
+    return render(request, 'clubs/form.html', context)
 
 # def updateClub(request, club_id):
     # edit admins
