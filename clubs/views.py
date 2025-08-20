@@ -21,7 +21,10 @@ def createClub(request):
 
 # def deleteClub(request, club_id):
 
-# def viewClub(request, club_id):
+def viewClub(request, pk):
+    club = Club.objects.get(id=pk)
+    context = {'club': club}
+    return render(request, 'clubs/read.html', context)
 
 def listClubs(request):
     clubs = Club.objects.all()

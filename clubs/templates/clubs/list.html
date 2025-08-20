@@ -6,7 +6,9 @@
 
 {% for club in clubs %}
     <div>
-        <h2>{{ club.name }}</h2>
+        <a href="{% url 'view_club' club.id %}">
+            <h2>{{ club.name }}</h2>
+        </a>
         <p>{{ club.description }}</p>
         <p>Created on: {{ club.established_date }}</p>
     </div>
