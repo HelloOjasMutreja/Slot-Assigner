@@ -4,4 +4,18 @@
     
 <h1>This is the List of all the Tasks you're assigned</h1>
 
+{% for task in tasks %}
+    <div class="task">
+        <!-- <h2>{{ task.category }}</h2> -->
+        <h3>{{ task.description }}</h3>
+        <p>Start Date: {{ task.start_date }}</p>
+        <p>End Date: {{ task.end_date }}</p>
+        <p>Assigned By: {{ task.assigned_by.name }}</p>
+        <!-- <p>Assigned To: {{ task.assigned_to }}</p> -->
+        <br>
+    </div>
+{% empty %}
+    <p>No tasks assigned.</p>
+{% endfor %}
+
 {% endblock content %}
