@@ -3,8 +3,15 @@ from clubs.models import Club
 
 # Create your models here.
 
+class Category(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.name
+
 class Task(models.Model):
-    # category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
     description = models.TextField()
     start_date = models.DateField()
     end_date = models.DateField()
@@ -12,5 +19,6 @@ class Task(models.Model):
     # assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) (multiple users can be assigned to a task)
 
     def __str__(self):
-        return self.assigned_by.name + " - " + self.description[:50]
-                                # self.category
+        assigned_by_name = self.assigned_by.name if self.assigned_by else "Unassigned"
+        category_name = self.category.name if self.category else "No Category"
+        return f"{assigned_by_name}'s {category_name}"
