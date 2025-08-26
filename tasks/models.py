@@ -1,5 +1,6 @@
 from django.db import models
 from clubs.models import Club
+from accounts.models import CustomUser
 
 # Create your models here.
 
@@ -16,7 +17,7 @@ class Task(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     assigned_by = models.ForeignKey(Club, on_delete=models.CASCADE, null=False)
-    # assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True) (multiple users can be assigned to a task)
+    assigned_to = models.ManyToManyField(CustomUser, blank=True)
 
     def __str__(self):
         assigned_by_name = self.assigned_by.name if self.assigned_by else "Unassigned"
