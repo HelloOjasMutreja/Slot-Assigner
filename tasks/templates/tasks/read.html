@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+<h1>{{ task.assigned_by.name }}'s {{ task.category.name }}</h1>
+<p>{{ task.description }}</p>
+<p>Starting On: {{ task.start_date }}</p>
+<p>Ending On: {{ task.end_date }}</p>
+<p>Status: {{ status }}</p>
+
+<h2>Assignees:</h2>
+    {% for user in assignees %}
+        {{ user.first_name }} {{ user.last_name }}{% if not forloop.last %}, {% endif %}
+    {% empty %}
+        No one assigned.
+    {% endfor %}
+</p>
+
+{% endblock content %}
