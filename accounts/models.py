@@ -8,7 +8,10 @@ class CustomUser(models.Model):
     last_name = models.CharField(max_length=30)
     date_joined = models.DateTimeField(auto_now_add=True)
     current_year_of_study = models.IntegerField()
-    belongs_to_club = models.ManyToManyField('clubs.Club', blank=True)
-
+    belongs_to_club = models.ManyToManyField('clubs.Club', blank=True, related_name='members')
+    # profile_picture = models.ImageField(upload_to='profile_pics/', blank=True, null=True)  # Optional field for profile pictures
+    # is_active = models.BooleanField(default=True)  # To manage active/inactive users
+    # role_per_club (to identify domain they are part of) (should be many to many in each club) such as ALex is a "Technical" member and "Core" member in the Club A and is "Creative" member in Club B (can be implemented later if needed)
+ 
     def __str__(self):
         return self.first_name + " " + self.last_name
