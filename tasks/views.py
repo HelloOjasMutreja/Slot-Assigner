@@ -32,6 +32,17 @@ def updateTask(request, pk):
     context = {'form': form, 'task': task}
     return render(request, 'tasks/form.html', context)
 
+def deleteTask(request, pk):
+    task = Task.objects.get(id=pk)
+    if not task:
+        return redirect('home')
+    if request.method == 'POST':
+        task.delete()
+        return redirect('home')
+    
+    # context = {'task': task}
+    return render(request, 'tasks/delete.html', {'obj' : task})
+
 def viewTask(request, pk):
     task = Task.objects.get(id=pk)
     now = timezone.now()
