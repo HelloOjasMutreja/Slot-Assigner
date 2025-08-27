@@ -20,6 +20,6 @@ class Task(models.Model):
     assigned_to = models.ManyToManyField(CustomUser, blank=True)
 
     def __str__(self):
-        assigned_by_name = self.assigned_by.name if self.assigned_by else "Unassigned"
+        assigned_by_club = self.assigned_by.club_abreaviation if self.assigned_by else "Unassigned"
         category_name = self.category.name if self.category else "No Category"
-        return f"{assigned_by_name}'s {category_name}"
+        return f"{assigned_by_club}'s {category_name}"
