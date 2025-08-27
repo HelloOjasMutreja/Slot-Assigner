@@ -7,7 +7,7 @@
 {% for task in tasks %}
     <div class="task">
         <h2><a href="{% url 'view_task' task.id %}">{{ task.assigned_by.name }}'s {{ task.category }}</a></h2>
-        <h3>{{ task.description }}</h3>
+        <p>{{ task.description }}</p>
         <p>Start Date: {{ task.start_date }}</p>
         <p>End Date: {{ task.end_date }}</p>
         <br>

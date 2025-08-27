@@ -3,14 +3,17 @@
 {% block content %}
     
 <h1>This is the List View for all the Clubs</h1>
+<a href="{% url 'create_club' %}"><h1>+ Add Club (Apply)</h1></a>
 
 {% for club in clubs %}
     <div>
+        <hr>
         <a href="{% url 'view_club' club.id %}">
             <h2>{{ club.name }}</h2>
+            <h3>{{ club.description }}</h3>
+            <h4>Established on: {{ club.established_date }}</h4>
+            <!-- <h4>Members Count: {{ club.members.count }}</h4> -->
         </a>
-        <p>{{ club.description }}</p>
-        <p>Created on: {{ club.established_date }}</p>
     </div>
 {% empty %}
     <p>No clubs available.</p>

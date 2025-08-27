@@ -19,8 +19,18 @@ def createTask(request):
     context = {'form' : form}
     return render(request, 'tasks/form.html', context)
 
-# def now():
-#     raise NotImplementedError
+def updateTask(request, pk):
+    task = Task.objects.get(id=pk)
+    if not task:
+        return redirect('home')
+    form = TaskForm(instance=task)
+    if request.method == 'POST':
+        form = TaskForm(request.POST, instance=task)
+        if form.is_valid():
+            form.save()
+            return redirect('view_task', pk=task.id)
+    context = {'form': form, 'task': task}
+    return render(request, 'tasks/form.html', context)
 
 def viewTask(request, pk):
     task = Task.objects.get(id=pk)
