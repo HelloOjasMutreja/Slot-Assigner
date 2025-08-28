@@ -10,6 +10,19 @@
 
 <p>Established on: {{ club.established_date }}</p>
 
+<p>Members Count: {{ club.members.count }}</p>
+
+{% if club.members.all %}
+    <h3>Members:</h3>
+    <ul>
+        {% for member in club.members.all %}
+            <li>{{ member.first_name }} {{ member.last_name }} ({{ member.email }})</li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No members in this club.</p>
+{% endif %}
+
 <p><a href="{% url 'update_club' club.id %}">Edit Club?</a></p>
 
 <p><a href="{% url 'delete_club' club.id %}">Delete Club?</a></p>
